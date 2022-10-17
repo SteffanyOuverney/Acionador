@@ -13,7 +13,8 @@ void tone(byte pin, int freq) {
   ledcWriteTone(0, freq); // play tone
   playing = pin; // store pin
 }
-void noTone() {
+void noTone()
+{
   tone(playing, 0);
 }
 
