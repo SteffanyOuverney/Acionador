@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <head>
     <title>
-      🚀 Esquema de montagem do circuito 🚀
+      Serra Roketry V2.0
     <title/>
   <head/>
 </html>
