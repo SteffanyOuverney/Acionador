@@ -5,5 +5,5 @@
   O objetivo do circuito abaixo é permitir a ignição do motor de forma remota, além de garantir que o lançamento não inicie de maneira acidental.
 <p/> 
 <div align-"center"> 
-  <img src = "https://user-images.githubusercontent.com/66381068/194957998-b2df7854-e9c1-4096-8e9b-39e01dbc200e.jpg" width=" 9500px"/> 
+  <img src = "https://user-images.githubusercontent.com/66381068/199584293-ca8f24e0-b55b-417a-864a-71b2a55e2f13.png" width=" 9500px"/> 
 </div>
