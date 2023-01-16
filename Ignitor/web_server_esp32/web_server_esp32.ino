@@ -18,20 +18,16 @@ String header;
 
 // Auxiliar variables to store the current output state
 String output26State = "off";
-String output27State = "off";
 
 // Assign output variables to GPIO pins
-const int output26 = 2;
-const int output27 = 27;
+const int output26 = 26;
 
 void setup() {
   Serial.begin(115200);
   // Initialize the output variables as outputs
   pinMode(output26, OUTPUT);
-  pinMode(output27, OUTPUT);
   // Set outputs to LOW
   digitalWrite(output26, LOW);
-  digitalWrite(output27, LOW);
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Setting AP (Access Point)…");
@@ -71,20 +67,12 @@ void loop(){
             if (header.indexOf("GET /26/on") >= 0) {
               Serial.println("GPIO 26 on");
               output26State = "on";
-              digitalWrite(output26, HIGH);
+              digitalWrite(output26, HIGH);//
             } else if (header.indexOf("GET /26/off") >= 0) {
               Serial.println("GPIO 26 off");
               output26State = "off";
               digitalWrite(output26, LOW);
-            } else if (header.indexOf("GET /27/on") >= 0) {
-              Serial.println("GPIO 27 on");
-              output27State = "on";
-              digitalWrite(output27, HIGH);
-            } else if (header.indexOf("GET /27/off") >= 0) {
-              Serial.println("GPIO 27 off");
-              output27State = "off";
-              digitalWrite(output27, LOW);
-            }
+            } 
             
             // Display the HTML web page
             client.println("<!DOCTYPE html><html>");
