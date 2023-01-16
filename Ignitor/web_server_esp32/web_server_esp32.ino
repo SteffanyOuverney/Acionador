@@ -27,7 +27,7 @@ void setup() {
   // Initialize the output variables as outputs
   pinMode(output26, OUTPUT);
   // Set outputs to LOW
-  digitalWrite(output26, LOW);
+  digitalWrite(output26, HIGH);
 
   // Connect to Wi-Fi network with SSID and password
   Serial.print("Setting AP (Access Point)…");
@@ -67,11 +67,11 @@ void loop(){
             if (header.indexOf("GET /26/on") >= 0) {
               Serial.println("GPIO 26 on");
               output26State = "on";
-              digitalWrite(output26, HIGH);//
+              digitalWrite(output26, LOW);//
             } else if (header.indexOf("GET /26/off") >= 0) {
               Serial.println("GPIO 26 off");
               output26State = "off";
-              digitalWrite(output26, LOW);
+              digitalWrite(output26, HIGH);
             } 
             
             // Display the HTML web page
