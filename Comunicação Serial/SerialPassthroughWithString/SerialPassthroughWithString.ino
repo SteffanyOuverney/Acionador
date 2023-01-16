@@ -24,9 +24,11 @@
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/SerialPassthrough
 */
 
+char aux;
+
 void setup() {
-  Serial.begin(9600);
-  Serial2.begin(9600);
+  Serial.begin(115200);
+  Serial2.begin(115200);
 }
 
 void loop() {
@@ -35,6 +37,17 @@ void loop() {
   }
 
   if (Serial2.available()) {     // If anything comes in Serial1 (pins 0 & 1)
-    Serial.write(Serial2.read());   // read it and send it out Serial (USB)
+    while (Serial2.available() == 0) {} 
+    String teststr = Serial2.readString();  //read until timeout
+  teststr.trim();                        // remove any \r \n whitespace at the end of the String
+  
+  if (teststr == "red") {
+    Serial.println("A primary color");
+  } else {
+    Serial.println("Something else");
   }
+    //Seria,l.write(teststr);   // read it and send it out Serial (USB)
+  
+  }
+  Serial.println("A primary color");
 }
