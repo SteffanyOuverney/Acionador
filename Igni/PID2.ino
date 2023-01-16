@@ -64,5 +64,4 @@ void loop()
   Input = TX;
   myPID.Compute();
   analogWrite(PIN_OUTPUT, Output);
-  
 }
