@@ -1,8 +1,3 @@
-/*********
-  Rui Santos
-  Complete project details at https://randomnerdtutorials.com  
-*********/
-
 // Load Wi-Fi library
 #include <WiFi.h>
 
@@ -26,7 +21,7 @@ void setup() {
   Serial.begin(115200);
   // Initialize the output variables as outputs
   pinMode(output26, OUTPUT);
-  // Set outputs to LOW
+  // Set outputs to HIGH (relé desligado)
   digitalWrite(output26, HIGH);
 
   // Connect to Wi-Fi network with SSID and password
@@ -67,10 +62,12 @@ void loop(){
             if (header.indexOf("GET /26/on") >= 0) {
               Serial.println("GPIO 26 on");
               output26State = "on";
-              digitalWrite(output26, LOW);//
+              //liga o módulo relé
+              digitalWrite(output26, LOW);
             } else if (header.indexOf("GET /26/off") >= 0) {
               Serial.println("GPIO 26 off");
               output26State = "off";
+              //desliga o módulo relé
               digitalWrite(output26, HIGH);
             } 
             
@@ -92,7 +89,7 @@ void loop(){
             client.println("<p>GPIO 26 - State " + output26State + "</p>");
             // If the output26State is off, it displays the ON button       
             if (output26State=="off") {
-              client.println("<p><a href=\"/26/on\"><button class=\"button\">Lauch the God damn rocket</button></a></p>");
+              client.println("<p><a href=\"/26/on\"><button class=\"button\">Launch the God damn rocket</button></a></p>");
             } else {
               client.println("<p><a href=\"/26/off\"><button class=\"button button2\">Abort</button></a></p>");
             } 
