@@ -26,13 +26,13 @@ ESP8266WiFiMulti wifiMulti;
 #define WIFI_PASSWORD "Iamarobot"
 // InfluxDB  server url. Don't use localhost, always server name or ip address.
 // E.g. http://192.168.1.48:8086 (In InfluxDB 2 UI -> Load Data -> Client Libraries), 
-#define INFLUXDB_URL "http://192.168.13.232:8086/"
+#define INFLUXDB_URL "http://192.168.13.191:8086/"
 // InfluxDB 2 server or cloud API authentication token (Use: InfluxDB UI -> Load Data -> Tokens -> <select token>)
-#define INFLUXDB_TOKEN "cOXurPQTGuuF9jq0LhrWeInHP5E1YXHcNeX7ENAi9LdFx6KKuf5MFERVGGzF5pGsAealr5ee4fDvHXcaiPah6w=="
+#define INFLUXDB_TOKEN "y54yKJG8jbLXiUdf_zv8fUKkH6rLaDOl6EKDgXTmunEtu42GOawqWnsJJvmFoCDWCmDVWziZWqsHhuHKkXL3Ww=="
 // InfluxDB 2 organization id (Use: InfluxDB UI -> Settings -> Profile -> <name under tile> )
 #define INFLUXDB_ORG "UERJ"
 // InfluxDB 2 bucket name (Use: InfluxDB UI -> Load Data -> Buckets)
-#define INFLUXDB_BUCKET "random"
+#define INFLUXDB_BUCKET "rocket"
 // InfluxDB v1 database name 
 //#define INFLUXDB_DB_NAME "database"
 
@@ -46,8 +46,8 @@ Point sensor("wifi_status");
 
 #include "HX711.h"
 
-#define CELULA_DT  15
-#define CELULA_SCK  2
+#define CELULA_DT  26
+#define CELULA_SCK  27
 
 HX711 escala;
 
