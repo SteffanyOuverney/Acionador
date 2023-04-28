@@ -9,8 +9,8 @@ HX711 escala;
 
 float fator_calib = -10000; // Coloque aqui o valor encontrado na calibração
 
-#define CELULA_DT  11
-#define CELULA_SCK  10
+#define CELULA_DT  27
+#define CELULA_SCK  26
 
 // Variaveis do WiFi
 const char* ssid     = "NOME_DA_REDE_AQUI";
@@ -19,10 +19,6 @@ const char* password = "SENHA_DA_REDE_AQUI";
 // Conecta com o IFTTT
 const char* resource = "/trigger/{Escreva seu evento}/with/key/{Escreva a key}";
 const char* server = "maker.ifttt.com";
-
-// Parametros função sleep
-uint64_t uS_TO_S_FACTOR = 1000000;
-uint64_t TIME_TO_SLEEP = 120;
 
 void setup() {
 
@@ -38,11 +34,6 @@ Serial.begin(9600);
   initWifi();
   delay(5000);
   makeIFTTTRequest();
-
-  // Inicia o modo deep sleep
-  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
-  Serial.println("Iniciando deep sleep");
-  esp_deep_sleep_start();
 
 }
 

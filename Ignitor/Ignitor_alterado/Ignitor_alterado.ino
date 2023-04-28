@@ -97,9 +97,14 @@ void loop() {
 
             // Web Page Heading
             client.println("<body><h1>Serra Rocketry Launcher V1.0</h1>");
+            for(int i;i<=10;i--)
+            {
+              client.println(i);
+            }
+       
 
             // Display current state, and ON/OFF buttons for GPIO 26
-            client.println("<p>GPIO 26 - State " + output26State + "</p>");
+            //client.println("<p>GPIO 26 - State " + output26State + "</p>");
             // If the output26State is off, it displays the ON button
             if (output26State == "off") {
               client.println("<p><a href=\"/26/on\"><button class=\"button\">Launch the God damn rocket</button></a></p>");
