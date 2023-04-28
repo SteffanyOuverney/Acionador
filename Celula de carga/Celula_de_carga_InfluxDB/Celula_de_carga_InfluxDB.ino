@@ -51,7 +51,7 @@ Point sensor("wifi_status");
 
 HX711 escala;
 
-float fator_calib = -10000; // Coloque aqui o valor encontrado na calibração
+float fator_calib = -473893; // Coloque aqui o valor encontrado na calibração
 
 
 void setup() {
@@ -92,7 +92,7 @@ void loop() {
   // Store measured value into point
   sensor.clearFields();
   // Report RSSI of currently connected network
-  sensor.addField("test_escala", escala.get_units(1));
+  sensor.addField("test_escala", escala.get_units(1),3);
   // Print what are we exactly writing
   Serial.print("Writing: ");
   Serial.println(client.pointToLineProtocol(sensor));
