@@ -21,14 +21,14 @@ ESP8266WiFiMulti wifiMulti;
 #include <InfluxDbClient.h>
 
 // WiFi AP SSID
-#define WIFI_SSID "LaRA"
+#define WIFI_SSID "Raspberry-AP"
 // WiFi password
-#define WIFI_PASSWORD "Iamarobot"
+#define WIFI_PASSWORD "raspberry"
 // InfluxDB  server url. Don't use localhost, always server name or ip address.
 // E.g. http://192.168.1.48:8086 (In InfluxDB 2 UI -> Load Data -> Client Libraries), 
-#define INFLUXDB_URL "http://192.168.13.191:8086/"
+#define INFLUXDB_URL "http://192.168.1.108:8086/"
 // InfluxDB 2 server or cloud API authentication token (Use: InfluxDB UI -> Load Data -> Tokens -> <select token>)
-#define INFLUXDB_TOKEN "y54yKJG8jbLXiUdf_zv8fUKkH6rLaDOl6EKDgXTmunEtu42GOawqWnsJJvmFoCDWCmDVWziZWqsHhuHKkXL3Ww=="
+#define INFLUXDB_TOKEN "oDwDIOL9HpwKM16Jl7iZ2ijLGoROkwpe5qMpRBY155eULgs8dQdU8nlZdRVaLDc-nkDWkW_TinftyvoNmOVjWA=="
 // InfluxDB 2 organization id (Use: InfluxDB UI -> Settings -> Profile -> <name under tile> )
 #define INFLUXDB_ORG "UERJ"
 // InfluxDB 2 bucket name (Use: InfluxDB UI -> Load Data -> Buckets)
@@ -51,7 +51,7 @@ Point sensor("wifi_status");
 
 HX711 escala;
 
-float fator_calib = -473893; // Coloque aqui o valor encontrado na calibração
+float fator_calib = 473893; // Coloque aqui o valor encontrado na calibração
 
 
 void setup() {
