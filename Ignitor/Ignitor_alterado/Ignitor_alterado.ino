@@ -2,8 +2,8 @@
 #include <WiFi.h>
 
 // Replace with your network credentials
-const char* ssid     = "Ignitor";
-const char* password = "senhasupersecreta";
+const char* ssid     = "Raspberry-AP";
+const char* password = "raspberry";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -19,7 +19,7 @@ const int output26 = 13;
 
 const int BUZZ = 23;
 
-int count = 0;
+unsigned long lastmillis;
 
 void setup() {
   Serial.begin(115200);
@@ -30,13 +30,19 @@ void setup() {
 
   pinMode(BUZZ, OUTPUT); // Saída Do Buzzer
 
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
   // Connect to Wi-Fi network with SSID and password
-  Serial.print("Setting AP (Access Point)…");
+  Serial.print("Connecting to ");
+  Serial.print(ssid);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print('.');
+    delay(1000);
+  }
   // Remove the password parameter, if you want the AP (Access Point) to be open
-  WiFi.softAP(ssid, password);
 
-  IPAddress IP = WiFi.softAPIP();
-  Serial.print("AP IP address: ");
+  IPAddress IP = WiFi.localIP();
+  Serial.print(" IP address: ");
   Serial.println(IP);
 
   server.begin();
@@ -44,7 +50,6 @@ void setup() {
 
 void loop() {
   WiFiClient client = server.available();   // Listen for incoming clients
-  count = 10;
   if (client) {                             // If a new client connects,
     Serial.println("New Client.");          // print a message out in the serial port
     String currentLine = "";                // make a String to hold incoming data from the client
@@ -69,13 +74,15 @@ void loop() {
               Serial.println("GPIO 26 on");
               output26State = "on";
               //liga o módulo relé
-              for (int i = 0; i < 10; i++) {
-                digitalWrite(BUZZ, HIGH);
-                delay(800);
-                digitalWrite(BUZZ, LOW);
-                delay(200);
-              }
-              digitalWrite(output26, HIGH);
+
+//              if (lastmillis <= millis() - 1000) {
+//                digitalWrite(BUZZ, HIGH);
+//                delay(800);
+//                digitalWrite(BUZZ, LOW);
+//                delay(200);
+//                lastmillis = millis();
+//              }
+//              digitalWrite(output26, HIGH);
 
             } else if (header.indexOf("GET /26/off") >= 0) {
               Serial.println("GPIO 26 off");
@@ -97,19 +104,13 @@ void loop() {
 
             // Web Page Heading
             client.println("<body><h1>Serra Rocketry Launcher V1.0</h1>");
-            for(int i;i<=10;i--)
-            {
-              client.println(i);
-            }
-       
-
             // Display current state, and ON/OFF buttons for GPIO 26
-            //client.println("<p>GPIO 26 - State " + output26State + "</p>");
+            client.println("<p>GPIO 26 - State " + output26State + "</p>");
             // If the output26State is off, it displays the ON button
             if (output26State == "off") {
               client.println("<p><a href=\"/26/on\"><button class=\"button\">Launch the God damn rocket</button></a></p>");
             } else {
-              client.println("<p><a href=\"/26/off\"><button class=\"button button2\">Abort - " + String(count) + "</button></a></p>");
+              client.println("<p><a href=\"/26/off\"><button class=\"button button2\">Abort</button></a></p>");
 
             }
 
